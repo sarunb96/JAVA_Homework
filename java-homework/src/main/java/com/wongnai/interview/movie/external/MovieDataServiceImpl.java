@@ -38,12 +38,13 @@ public class MovieDataServiceImpl implements MovieDataService {
 		// do not download and use local file or put the file anywhere else.
 		JSONArray arrJson = new JSONArray();
 		JSONObject objJson = new JSONObject();
-		MovieData movieData = new MovieData();
+		MovieData movieData;
 		MoviesResponse movieResp = new MoviesResponse();
 		try {
 			arrJson = new JSONArray(getURL(MOVIE_DATA_URL));
 			for (int i = 0; i < arrJson.length(); i++) {
 				objJson = (JSONObject) arrJson.get(i);
+				movieData = new MovieData();
 				movieData.setTitle(objJson.get("title").toString());
 				movieData.setYear(Integer.parseInt(objJson.get("year").toString()));
 				movieData.setCast((List<String>) Arrays.asList(objJson.get("cast").toString().replace("[", "").replace("]", "")));
