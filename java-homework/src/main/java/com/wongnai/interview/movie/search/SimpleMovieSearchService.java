@@ -24,7 +24,7 @@ public class SimpleMovieSearchService implements MovieSearchService {
 		List<Movie> movieList = new ArrayList<Movie>();
 		Movie movie;
 		for (int i = 0; i < movieResp.size(); i++) {
-			if (movieResp.get(i).getTitle().matches(".*\\b" + queryText + "\\b.*")) {
+			if (movieResp.get(i).getTitle().matches("(?i).*\\b(" + queryText + ")\\b.*") && !movieResp.get(i).getTitle().equals(queryText)) {
 				movie = new Movie(movieResp.get(i).getTitle());
 				movie.setId(Long.valueOf(i));
 				movie.setName(movieResp.get(i).getTitle());
